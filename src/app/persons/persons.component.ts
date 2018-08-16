@@ -50,12 +50,12 @@ export class PersonsComponent implements OnInit {
 
 
       this.options = {
-          center: {lat: 35.724461, lng: 139.612234}, 
+          center: {lat: 56.501861, lng: 85.003960}, 
           zoom: 17
       };
 
       this.overlays = [
-        new google.maps.Marker({position: {lat: 35.724461, lng: 139.612234}, title:"shaft"})
+        new google.maps.Marker({position: {lat: 56.501861, lng: 85.003960}, title:"tomsk dosaaf"})
       ];
   }
 }
