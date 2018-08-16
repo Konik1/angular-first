@@ -13,11 +13,11 @@ declare var google: any;
   styleUrls: ['./persons.component.css']
 })
 export class PersonsComponent implements OnInit {
-  taitelPerson: string = "gatari";
+  taitelPerson: string = "";
   personList: Observable<object>;
   dialogName: string;
   dialogDescription: string;
-  user:string = "gatari";
+  user:string = "";
 
   constructor(private personService: PersonService, 
     private idService: IdService, 
