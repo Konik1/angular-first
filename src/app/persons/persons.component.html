@@ -1,0 +1,37 @@
+
+<ng-container *ngFor="let value of personList | async">
+    <div class=list align="center" 
+    *ngIf="value.id == taitelPerson"
+    (click)="openDialog(value.name, value.description)"    
+    type="text" (click)="showDialog()">
+        <img class=pic [src]="'data:image/jpg;base64,' + value.data64">
+        <br><span class=text>{{value.name}}</span>
+    </div>
+</ng-container>
+<div class=end></div>
+
+<!-- <table cellspacing=10 border=1 align="center">
+  <ng-container *ngFor="let value of personList | async">
+  <td *ngIf="value.id == taitelPerson"
+  (click)="openDialog(value.name, value.description)"    
+  type="text" (click)="showDialog()">
+  <tr align="center">
+    <td>
+       <img [src]="value.url">
+    </td>
+   </tr> 
+   <tr align="center">
+    <td>
+      <div class=text>{{value.name}}</div>  
+    </td>
+  </tr>
+  </td>
+  </ng-container>
+</table> -->
+
+<div align="center"><p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'500px','height':'500px'}" ></p-gmap></div>
+
+<p-dialog [draggable]=false header={{dialogName}} [(visible)]="display" 
+[contentStyle]="{'max-width':'700px'}" modal=true dismissableMask=true>
+  {{dialogDescription}}
+</p-dialog>

@@ -1,0 +1,20 @@
+.left{
+    border: 0px;
+    color: #e6b000;
+    background: #383838;
+    width: 50%;
+    height: 100px;
+    margin: 0;
+    font-size: 200%;
+    white-space: pre;
+}
+.right{
+    border: 0px;
+    color: #e6b000;
+    background: #383838;
+    width: 50%;
+    height: 100px;
+    margin: 0;
+    font-size: 200%;
+    white-space: pre;
+}

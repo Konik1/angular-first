@@ -1,0 +1,147 @@
+<div class="taitel">
+  <button pButton type="button" label="Добавить новый тайтл" icon="pi pi-plus"
+  class="ui-button-raised taitelBot" (click)="getNewTaitel('1')"></button>
+</div>
+
+<div class="person"> 
+  <button pButton type="button" label="Добавить нового персонажа" icon="pi pi-plus"
+  class="ui-button-raised personBot" (click)="getNewPerson('3')"></button>
+</div>
+
+<div class="taitel">
+    <button pButton type="button" label="Редактировать тайтл" icon="pi pi-pencil"
+    class="ui-button-raised ui-button-success taitelBot" (click)="getEditTaitel('2')"></button>
+</div>
+
+<div class="person"> 
+    <button pButton type="button" label="Редактировать персонажа" icon="pi pi-pencil"
+    class="ui-button-raised ui-button-success personBot" (click)="getEditPerson('4')"></button>
+</div>
+
+<div class="taitel">
+  <button pButton type="button" label="Удалить тайтл" icon="pi pi-times"
+  class="ui-button-raised ui-button-danger taitelBot" (click)="getDeleteTaitel('5')"></button>
+</div>
+
+<div class="person">
+    <button pButton type="button" label="Удалить персонажа" icon="pi pi-times"
+    class="ui-button-raised ui-button-danger personBot" (click)="getDeletePerson('6')"></button>
+</div>
+
+
+<p-dialog [draggable]=false header={{dialogName}} [(visible)]="display"
+[minWidth]="300" [minHeight]="300" 
+[contentStyle]="{'max-width':'700px'}" modal=true dismissableMask=true>
+  <div [ngSwitch]="id">
+  <!--   --> <ng-template [ngSwitchCase]="1">
+      <span class="ui-float-label">
+        <input id="float-input" type="text" size="50" pInputText [pKeyFilter]="blockSpace"
+        name="id" [(ngModel)]="postTaitelProp.id" #id="ngModel" required> 
+        <label for="float-input">Ведите короткий идентификатор</label>
+      </span>
+      <br>
+      <span class="ui-float-label">
+        <input id="float-input" type="text" size="50" pInputText
+        name="name" [(ngModel)]="postTaitelProp.name" #name="ngModel" required> 
+        <label for="float-input">Ведите название тайтла</label>
+      </span>
+      <br>
+      <input type="file" id="filePicker" (change)="handleFileSelect($event)">
+      <br>
+      <button pButton type="button" label="Добавить" icon="pi pi-plus"
+      [disabled]="id.invalid || name.invalid" 
+      (click)="postTaitelFile64()" (click)="postTaitel(postTaitelProp)"></button>
+    </ng-template>
+  <!--   --> <ng-template [ngSwitchCase]="2">
+      <p-dropdown [options]="taitelList | async" [(ngModel)]="putTaitelProp"
+      placeholder="Выберете тайтл" optionLabel="name"></p-dropdown>
+      <br>
+
+      <br>
+      <span class="ui-float-label">
+       <input id="float-input" type="text" size="50" pInputText
+       name="name" [(ngModel)]="putTaitelProp.name" #name="ngModel" required> 
+        <label for="float-input">Ведите название тайтла</label>
+      </span>
+      <br>
+      <input type="file" id="filePicker" (change)="handleFileSelect($event)">
+      <br>
+      <button pButton type="button" label="Изменить" icon="pi pi-pencil" 
+      [disabled]="name.invalid" 
+      (click)="putTaitelFile64()" (click)="putTaitel(putTaitelProp)"></button>
+    </ng-template>
+  <!--   --> <ng-template [ngSwitchCase]="3">
+        <p-dropdown [options]="taitelList | async" [(ngModel)]="taitelNamePostPerson"
+        placeholder="Выберете тайтл" optionLabel="name"
+        (onChange)="onChangePostPerson()"></p-dropdown>
+        <br>
+        
+          <br>
+          <span class="ui-float-label">
+           <input id="float-input" type="text" size="50" pInputText
+           name="name" [(ngModel)]="postPersonProp.name" #name="ngModel" required> 
+            <label for="float-input">Ведите имя персонажа</label>
+          </span>
+          <br>
+          <span class="ui-float-label">
+            <input id="float-input" type="text" size="50" pInputText
+            description="description" [(ngModel)]="postPersonProp.description" #description="ngModel" required> 
+            <label for="float-input">Ведите описание персонажа</label>
+          </span>
+          <br>
+          <input type="file" id="filePicker" (change)="handleFileSelect($event)">
+          <br>
+          <button pButton type="button" label="Добавить" icon="pi pi-plus" 
+          [disabled]="name.invalid || description.invalid" 
+          (click)="postPersonFile64()" (click)="postPerson(postPersonProp)"></button>
+    </ng-template>
+  <!--   --> <ng-template [ngSwitchCase]="4">
+        <p-dropdown [options]="personList | async" [(ngModel)]="putPersonProp" 
+        placeholder="Выберете персонажа" optionLabel="name"
+        (onChange)="onChangePutPerson2()"></p-dropdown>
+        <br>
+
+        <br>
+        <p-dropdown [options]="taitelList | async" [(ngModel)]="taitelNamePutPerson" 
+        placeholder="Выберете тайтл" optionLabel="name" 
+        (onChange)="onChangePutPerson()"></p-dropdown>
+        <br>
+
+        <br>
+          <span class="ui-float-label">
+           <input id="float-input" type="text" size="50" pInputText
+           name="name" [(ngModel)]="putPersonProp.putName" #name="ngModel" required> 
+            <label for="float-input">Ведите имя персонажа</label>
+          </span>
+          <br>
+          <span class="ui-float-label">
+            <input id="float-input" type="text" size="50" pInputText
+            description="description" [(ngModel)]="putPersonProp.description" #description="ngModel" required> 
+            <label for="float-input">Ведите описание персонажа</label>
+          </span>
+          <br>
+          <input type="file" id="filePicker" (change)="handleFileSelect($event)">
+          <br>
+          <button pButton type="button" label="Изменить" icon="pi pi-pencil"
+          [disabled]="name.invalid || description.invalid" 
+          (click)="putPersonFile64()" (click)="putPerson(putPersonProp)"></button>
+    </ng-template>
+  <!--   --> <ng-template [ngSwitchCase]="5">
+    <p-dropdown [options]="taitelList | async" [(ngModel)]="deleteTaitelProp" 
+    placeholder="Выберете тайтл" optionLabel="name"></p-dropdown>
+    <br>
+    <br><br><br>
+    <br>
+    <button pButton type="button" label="Удалить" icon="pi pi-times" (click)="deleteTaitel(deleteTaitelProp)"></button>
+  </ng-template>    
+  <!--   --> <ng-template [ngSwitchCase]="6">
+    <p-dropdown [options]="personList | async" [(ngModel)]="deletePersonProp"
+    placeholder="Выберете персонажа" optionLabel="name"></p-dropdown>
+    <br>
+    <br><br><br>
+    <br>
+    <button pButton type="button" label="Удалить" icon="pi pi-times" (click)="deletePerson(deletePersonProp)"></button>
+  </ng-template>    
+    <ng-template ngSwitchDefault></ng-template>
+  </div>
+</p-dialog>

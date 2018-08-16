@@ -1,0 +1,26 @@
+<div>
+    <button class=left align="left" type="button"  (click)="getHome()"
+    onmouseover="style='background: #272727;'"
+    onmouseout="style='background: #383838;'"
+    onmousedown="style='background: #1d1d1d;'"
+    onmouseup="style='background: #272727;'">На главную</button>    
+
+    <button class=right align="right" type="button" (click)="getClick()"
+    onmouseover="style='background: #272727;'"
+    onmouseout="style='background: #383838;'"
+    onmousedown="style='background: #1d1d1d;'"
+    onmouseup="style='background: #272727;'">Добавить, изменить или удалить</button>
+</div>
+
+<!-- <p-toolbar>
+    
+        <button class=left align="left" pButton type="button" label="На Главную" icon="pi pi-plus" 
+        (click)="getHome()"></button>    
+
+        <button class=right align="right" pButton type="button" label="Добавить" icon="pi pi-plus" 
+        (click)="getClick()"></button>
+    
+</p-toolbar> -->
+
+<router-outlet></router-outlet>
+

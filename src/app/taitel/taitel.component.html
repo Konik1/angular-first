@@ -1,0 +1,11 @@
+
+<ng-container  *ngFor="let value of taitelList | async">
+    <div class=list align="center"
+    (mouseover)="getTaitelId(value.id)"
+    (click)="getTaitelIdClick(value.id)">
+        <img class=pic [src]="'data:image/jpg;base64,' + value.data64">
+        <br><span class=text>{{value.name}}</span>
+    </div>
+</ng-container>
+
+
